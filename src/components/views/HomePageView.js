@@ -7,10 +7,10 @@ It constructs a React component to display the home page.
 const HomePageView = () => {
   // Render Home page view
   return (
-    <div >
+    <div>
       <h1>Home Page</h1>
     </div>
-  );    
-}
+  );
+};
 
 export default HomePageView;

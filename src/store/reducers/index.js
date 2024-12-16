@@ -9,7 +9,7 @@ with the values being the respective individual Reducers.
 Note: A "barrel" file is a way to rollup exports from other modules into a single convenient module. 
 The "barrel" (module) file re-exports the exports of other modules.
 ================================================== */
-export { default as allCampuses } from './campuses';
-export { default as campus } from './campus';
-export { default as allStudents } from './students';
-export { default as student } from './student';
+export { default as allCampuses } from "./campuses";
+export { default as campus } from "./campus";
+export { default as allStudents } from "./students";
+export { default as student } from "./student";

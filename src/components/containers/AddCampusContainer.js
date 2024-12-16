@@ -9,11 +9,10 @@ import Header from "./Header";
 import { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import AddCampusView from "../views/AddCampusView";
 
-import NewStudentView from "../views/NewStudentView";
-import { addStudentThunk } from "../../store/thunks";
-
-class NewStudentContainer extends Component {
+import { addCampusThunk } from "../../store/thunks";
+class AddCampusContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,37 +20,41 @@ class NewStudentContainer extends Component {
       redirectId: null,
     };
   }
-
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
     });
   };
 
+  // Take action after user click the submit button
   handleSubmit = async (event) => {
-    let newStudent = await this.props.addStudent(event);
+    console.log(event);
+    let res = await this.props.addCampus(event);
+    console.log(res, "res");
     this.setState({
       redirect: true,
-      redirectId: newStudent.id,
+      redirectId: res.id,
     });
   };
+
   render() {
     if (this.state.redirect) {
-      return <Redirect to={`/student/${this.state.redirectId}`} />;
+      return <Redirect to={`/campus/${this.state.redirectId}`} />;
     }
 
     return (
       <div>
         <Header />
-        <NewStudentView handleSubmit={this.handleSubmit} />
+        <AddCampusView handleSubmit={this.handleSubmit} />
       </div>
     );
   }
 }
+
 const mapDispatch = (dispatch) => {
   return {
-    addStudent: (student) => dispatch(addStudentThunk(student)),
+    addCampus: (id) => dispatch(addCampusThunk(id)),
   };
 };
 
-export default connect(null, mapDispatch)(NewStudentContainer);
+export default connect(null, mapDispatch)(AddCampusContainer);
