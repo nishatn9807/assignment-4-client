@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
-const NewStudentView = ({ handleSubmit }) => {
+const EditStudentView = ({ student, handleSubmit }) => {
+  // Validation schema
   const schema = Yup.object().shape({
     firstname: Yup.string().required("First name is required."),
     lastname: Yup.string().required("Last name is required."),
@@ -12,32 +13,42 @@ const NewStudentView = ({ handleSubmit }) => {
       .required("Email is required."),
     imageURL: Yup.string().url("Invalid URL format.").notRequired(),
     gpa: Yup.number()
-      .transform((value, originalValue) => (originalValue === "" ? 0 : value))
+      .transform((value, originalValue) => (originalValue === "" ? 0 : value)) 
       .min(0, "GPA must be at least 0.")
       .max(4, "GPA must be at most 4.")
-      .notRequired(),
+      .typeError("GPA must be a valid number."), 
     campusId: Yup.number()
       .transform((value, originalValue) => (originalValue === "" ? 0 : value))
       .integer("Campus ID must be a valid number.")
-      .notRequired(),
+      .typeError("Campus ID must be a valid number."),
   });
 
   const {
     register,
     handleSubmit: onSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
   });
+  
+  useEffect(() => {
+    if (student) {
+      reset({
+        firstname: student.firstname || "",
+        lastname: student.lastname || "",
+        email: student.email || "",
+        imageURL: student.imageURL || "",
+        gpa: student.gpa || 0,
+        campusId: student.campusId || 0,
+      });
+    }
+  }, [student, reset]);
 
   return (
     <div>
-      <h1>Add a New Student</h1>
-      <form
-        onSubmit={onSubmit((data) => {
-          handleSubmit(data);
-        })}
-      >
+      <h1>Edit Student</h1>
+      <form onSubmit={onSubmit(handleSubmit)}>
         <div>
           <label>First Name:</label>
           <input type="text" {...register("firstname")} />
@@ -90,10 +101,10 @@ const NewStudentView = ({ handleSubmit }) => {
         </div>
         <br />
 
-        <button type="submit">Add Student</button>
+        <button type="submit">Update Student</button>
       </form>
     </div>
   );
 };
 
-export default NewStudentView;
+export default EditStudentView;
