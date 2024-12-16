@@ -17,7 +17,6 @@ import {
 
 import { CampusView } from "../views";
 import { Redirect } from "react-router-dom";
-import { addStudent } from "../../store/actions/actionCreators";
 
 // see details
 // go to single student?

@@ -11,7 +11,7 @@ const StudentView = ({ student, handleDelete }) => {
       <img
         className="studentImage"
         src={
-          student.Image ||
+          student.imageUrl ||
           "https://cdn-icons-png.flaticon.com/512/847/847969.png"
         }
         alt="Campus"
