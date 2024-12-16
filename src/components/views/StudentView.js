@@ -12,7 +12,7 @@ const StudentView = ({ student, handleDelete }) => {
         className="studentImage"
         src={
           student.Image ||
-          "https://zeta.creativecirclecdn.com/chief/original/20241008-134634-eaa-phpmf60Dp.jpg"
+          "https://cdn-icons-png.flaticon.com/512/847/847969.png"
         }
         alt="Campus"
       />

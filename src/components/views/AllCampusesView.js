@@ -30,7 +30,7 @@ const AllCampusesView = (props) => {
             className="campusImage"
             src={
               campus.imageURL ||
-              "https://zeta.creativecirclecdn.com/chief/original/20241008-134634-eaa-phpmf60Dp.jpg"
+              "https://cdn.prod.website-files.com/63dd388b87532047a1725f8f/6734e5a0cc1c56b124d6ecc3_campus-shot.jpg.webp"
             }
             alt="Campus"
           />
