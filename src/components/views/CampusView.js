@@ -7,7 +7,7 @@ const CampusView = (props) => {
       <img
         className="campusImage"
         src={
-          campus.imageURL ||
+          campus.imageUrl ||
           "https://cdn.prod.website-files.com/63dd388b87532047a1725f8f/6734e5a0cc1c56b124d6ecc3_campus-shot.jpg.webp"
         }
         alt="Campus"

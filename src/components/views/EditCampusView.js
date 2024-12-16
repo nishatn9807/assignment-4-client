@@ -7,7 +7,7 @@ const EditCampusView = ({ campus, handleSubmit: submitHandler }) => {
   const validSchema = Yup.object().shape({
     name: Yup.string().required("Campus name is required."),
     address: Yup.string().required("Campus address is required."),
-    imageURL: Yup.string().url("Invalid URL format.").notRequired(),
+    imageUrl: Yup.string().url("Invalid URL format.").notRequired(),
     description: Yup.string().notRequired(),
   });
 
@@ -21,7 +21,7 @@ const EditCampusView = ({ campus, handleSubmit: submitHandler }) => {
     defaultValues: {
       name: campus?.name || "",
       address: campus?.address || "",
-      imageURL: campus?.imageURL || "",
+      imageUrl: campus?.imageUrl || "",
       description: campus?.description || "",
     },
   });
@@ -30,7 +30,7 @@ const EditCampusView = ({ campus, handleSubmit: submitHandler }) => {
     reset({
       name: campus?.name || "",
       address: campus?.address || "",
-      imageURL: campus?.imageURL || "",
+      imageUrl: campus?.imageUrl || "",
       description: campus?.description || "",
     });
   }, [campus, reset]);
@@ -41,9 +41,9 @@ const EditCampusView = ({ campus, handleSubmit: submitHandler }) => {
       <form onSubmit={handleSubmit(submitHandler)}>
         <div>
           <label>Image URL:</label>
-          <input type="text" {...register("imageURL")} />
-          {errors.imageURL && (
-            <p style={{ color: "red" }}>{errors.imageURL.message}</p>
+          <input type="text" {...register("imageUrl")} />
+          {errors.imageUrl && (
+            <p style={{ color: "red" }}>{errors.imageUrl.message}</p>
           )}
         </div>
         <br />

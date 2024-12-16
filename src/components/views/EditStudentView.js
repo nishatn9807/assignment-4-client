@@ -11,7 +11,7 @@ const EditStudentView = ({ student, handleSubmit }) => {
     email: Yup.string()
       .email("Invalid email format.")
       .required("Email is required."),
-    imageURL: Yup.string().url("Invalid URL format.").notRequired(),
+    imageUrl: Yup.string().url("Invalid URL format.").notRequired(),
     gpa: Yup.number()
       .transform((value, originalValue) => (originalValue === "" ? 0 : value)) 
       .min(0, "GPA must be at least 0.")
@@ -31,14 +31,14 @@ const EditStudentView = ({ student, handleSubmit }) => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  
+
   useEffect(() => {
     if (student) {
       reset({
         firstname: student.firstname || "",
         lastname: student.lastname || "",
         email: student.email || "",
-        imageURL: student.imageURL || "",
+        imageUrl: student.imageUrl || "",
         gpa: student.gpa || 0,
         campusId: student.campusId || 0,
       });
@@ -78,9 +78,9 @@ const EditStudentView = ({ student, handleSubmit }) => {
 
         <div>
           <label>Image URL:</label>
-          <input type="text" {...register("imageURL")} />
-          {errors.imageURL && (
-            <p style={{ color: "red" }}>{errors.imageURL.message}</p>
+          <input type="text" {...register("imageUrl")} />
+          {errors.imageUrl && (
+            <p style={{ color: "red" }}>{errors.imageUrl.message}</p>
           )}
         </div>
         <br />
